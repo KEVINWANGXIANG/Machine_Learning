@@ -1,7 +1,7 @@
 from sklearn.svm import SVC, LinearSVC
 import pandas
 import numpy
-import math
+
 '''
 实验
 X = [[0], [1], [2], [3]]
