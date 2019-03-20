@@ -60,3 +60,4 @@ endTime = time.time()
 print("总耗时为:%.2f" % (endTime - startTime))
 
 #SVM算法太屌了,9秒完成，准确率97.3%
+#厉害
