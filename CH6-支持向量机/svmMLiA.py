@@ -533,48 +533,7 @@ def clipAlpha(aj,H,L):
     if L > aj:
         aj = L
     return aj
-'''
-def smoSimple(dataMatIn, classLabels, C, toler, maxIter):
-    dataMatrix = mat(dataMatIn); labelMat = mat(classLabels).transpose()
-    b = 0; m,n = shape(dataMatrix)
-    alphas = mat(zeros((m,1)))
-    iter = 0
-    while (iter < maxIter):
-        alphaPairsChanged = 0
-        for i in range(m):
-            fXi = float(multiply(alphas,labelMat).T*(dataMatrix*dataMatrix[i,:].T)) + b
-            Ei = fXi - float(labelMat[i])#if checks if an example violates KKT conditions
-            if ((labelMat[i]*Ei < -toler) and (alphas[i] < C)) or ((labelMat[i]*Ei > toler) and (alphas[i] > 0)):
-                j = selectJrand(i,m)
-                fXj = float(multiply(alphas,labelMat).T*(dataMatrix*dataMatrix[j,:].T)) + b
-                Ej = fXj - float(labelMat[j])
-                alphaIold = alphas[i].copy(); alphaJold = alphas[j].copy();
-                if (labelMat[i] != labelMat[j]):
-                    L = max(0, alphas[j] - alphas[i])
-                    H = min(C, C + alphas[j] - alphas[i])
-                else:
-                    L = max(0, alphas[j] + alphas[i] - C)
-                    H = min(C, alphas[j] + alphas[i])
-                if L==H: print("L==H"); continue
-                eta = 2.0 * dataMatrix[i,:]*dataMatrix[j,:].T - dataMatrix[i,:]*dataMatrix[i,:].T - dataMatrix[j,:]*dataMatrix[j,:].T
-                if eta >= 0: print ("eta>=0"); continue
-                alphas[j] -= labelMat[j]*(Ei - Ej)/eta
-                alphas[j] = clipAlpha(alphas[j],H,L)
-                if (abs(alphas[j] - alphaJold) < 0.00001): print ("j not moving enough"); continue
-                alphas[i] += labelMat[j]*labelMat[i]*(alphaJold - alphas[j])#update i by the same amount as j
-                                                                        #the update is in the oppostie direction
-                b1 = b - Ei- labelMat[i]*(alphas[i]-alphaIold)*dataMatrix[i,:]*dataMatrix[i,:].T - labelMat[j]*(alphas[j]-alphaJold)*dataMatrix[i,:]*dataMatrix[j,:].T
-                b2 = b - Ej- labelMat[i]*(alphas[i]-alphaIold)*dataMatrix[i,:]*dataMatrix[j,:].T - labelMat[j]*(alphas[j]-alphaJold)*dataMatrix[j,:]*dataMatrix[j,:].T
-                if (0 < alphas[i]) and (C > alphas[i]): b = b1
-                elif (0 < alphas[j]) and (C > alphas[j]): b = b2
-                else: b = (b1 + b2)/2.0
-                alphaPairsChanged += 1
-                print ("iter: %d i:%d, pairs changed %d" % (iter,i,alphaPairsChanged))
-        if (alphaPairsChanged == 0): iter += 1
-        else: iter = 0
-        print ("iteration number: %d" % iter)
-    return b,alphas
-'''
+
 def kernelTrans(X, A, kTup): #calc the kernel or transform data to a higher dimensional space
     m,n = shape(X)
     K = mat(zeros((m,1)))
@@ -665,13 +624,13 @@ def smoP(dataMatIn, classLabels, C, toler, maxIter,kTup=('lin', 0)):    #full Pl
         if entireSet:   #go over all
             for i in range(oS.m):
                 alphaPairsChanged += innerL(i,oS)
-                print ("fullSet, iter: %d i:%d, pairs changed %d" % (iter,i,alphaPairsChanged))
+                # print ("fullSet, iter: %d i:%d, pairs changed %d" % (iter,i,alphaPairsChanged))
             iter += 1
         else:#go over non-bound (railed) alphas
             nonBoundIs = nonzero((oS.alphas.A > 0) * (oS.alphas.A < C))[0]
             for i in nonBoundIs:
                 alphaPairsChanged += innerL(i,oS)
-                print ("non-bound, iter: %d i:%d, pairs changed %d" % (iter,i,alphaPairsChanged))
+                # print ("non-bound, iter: %d i:%d, pairs changed %d" % (iter,i,alphaPairsChanged))
             iter += 1
         if entireSet: entireSet = False #toggle entire set loop
         elif (alphaPairsChanged == 0): entireSet = True
@@ -710,8 +669,12 @@ def testRbf(k1=1.3):
         predict=kernelEval.T * multiply(labelSV,alphas[svInd]) + b
         if sign(predict)!=sign(labelArr[i]): errorCount += 1
     print ("the test error rate is: %f" % (float(errorCount)/m) )
-# testRbf()
+    print(alphas)
+    print(len(alphas))
+    print(b)
+testRbf()
 
+'''
 #手写体数字识别
 def img2vector(filename):
     returnVect = zeros((1,1024))
@@ -764,7 +727,7 @@ def testDigits(kTup=('rbf', 10)):
 
 testDigits()
 
-
+'''
 
 
 
