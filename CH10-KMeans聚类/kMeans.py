@@ -242,8 +242,7 @@ def clusterClubs(numClust=5):
     myCentroids, clustAssing = biKmeans(datMat, numClust, distMeas=distSLC)
     fig = plt.figure()
     rect=[0.1, 0.1, 0.8, 0.8]
-    scatterMarkers=['s', 'o', '^', '8', 'p', \
-                    'd', 'v', 'h', '>', '<']
+    scatterMarkers=['s', 'o', '^', '8', 'p', 'd', 'v', 'h', '>', '<']
     axprops = dict(xticks=[], yticks=[])
     ax0=fig.add_axes(rect, label='ax0', **axprops)
     imgP = plt.imread('F:\Python\机器学习实战\MLiA_SourceCode\machinelearninginaction\Ch10\Portland.png')
