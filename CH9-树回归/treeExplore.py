@@ -32,7 +32,7 @@ def getInputs():
         tolNentry.delete(0, END)
         tolNentry.insert(0, '10')
     try:
-        tolS = int(tolSentry.get())
+        tolS = float(tolSentry.get())
     except:
         tolS = 1.0
         print("enter Integer for tolS")
