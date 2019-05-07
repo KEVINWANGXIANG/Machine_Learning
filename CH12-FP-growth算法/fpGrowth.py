@@ -112,7 +112,7 @@ def ascendTree(leafNode, prefixPath):
         prefixPath.append(leafNode.name)
         ascendTree(leafNode.parent, prefixPath)
 
-#在FP树中，找出某个字母所有的前缀路径，即找到对应的条件模式基
+#在FP树中，找出某个字母所有的前缀路径，即找到对应的条件模式基、
 def findPrefixPath(basePat, treeNode):
     #存储前缀路径，用字典因为要记录每条前缀路径的出现次数
     conPats = {}
