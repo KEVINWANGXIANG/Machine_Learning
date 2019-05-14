@@ -87,7 +87,7 @@ def datingClassTest():
             errorCount += 1.0
     print("the total error rate is %.5f " % (errorCount / float(numTestVecs)))
 #错误率约为0.02
-# datingClassTest()
+datingClassTest()
 
 #由用户输入特征值，最后获取结果
 def classifyPerson():
