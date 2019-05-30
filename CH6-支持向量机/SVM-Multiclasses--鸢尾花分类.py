@@ -77,9 +77,12 @@ def createTestDataSet(path):
 path1 = r'C:/Users/Administrator/Desktop/数据集dataset/testData.csv'
 testData, rightClassify = createTestDataSet(path1)
 # print(testData)
+# print(type(testData))
+# print(rightClassify)
 errorCount = 0
 for i in range(len(testData)):
     predict_label = clf.predict([testData[i]])
+    # print(predict_label)
     if predict_label[0] != rightClassify[i]:
         errorCount += 1
-print("预测的准确率是：%.5f" %(float(errorCount) / len(testData)))
+print("预测的错误率是：%.5f" %(float(errorCount) / len(testData)))
