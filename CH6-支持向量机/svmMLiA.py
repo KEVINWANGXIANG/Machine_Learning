@@ -332,7 +332,7 @@ for i in range(len(dataMat)):
     else:
         y = -1
     if y != labelMat[i]:
-        err += 1;
+        err += 1
 # print(err)
 # print("错误率为:%.3f" %(float(err) / float(len(dataMat))))
 
@@ -669,8 +669,8 @@ def testRbf(k1=1.3):
         predict=kernelEval.T * multiply(labelSV,alphas[svInd]) + b
         if sign(predict)!=sign(labelArr[i]): errorCount += 1
     print ("the test error rate is: %f" % (float(errorCount)/m) )
-    print(alphas)
-    print(len(alphas))
+    # print(alphas)
+    # print(len(alphas))
     print(b)
 testRbf()
 
