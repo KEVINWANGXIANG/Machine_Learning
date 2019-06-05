@@ -39,7 +39,7 @@ print(model)
 # print(model.coef_)
 # print(model._get_coef()[0])
 
-'''
+
 
 import time
 #批量测试数字
@@ -66,4 +66,3 @@ print("总耗时为:%.2f" % (endTime - startTime))
 
 #SVM算法太屌了,9秒完成，准确率97.3%
 #厉害
-'''
